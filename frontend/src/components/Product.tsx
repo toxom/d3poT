@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import '../App.css';
+
 import Search from './Search'; 
 import PrinterIcon from '../assets/icons/PrinterIcon.svg';
 import ScannerIcon from '../assets/icons/ScannerIcon.svg';

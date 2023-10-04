@@ -8,6 +8,7 @@
   gap: 10px; 
   margin: 20px 20px;
   padding: 10px;
+  height: 10px;
 
 
 }
@@ -25,7 +26,7 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 50vh;
+  /* min-height: 50vh; */
   display: flex;
   flex-direction: column;
   align-items: flex-start; /* This ensures children start from the left */
@@ -33,6 +34,7 @@
   font-size: calc(10px + 2vmin);
   color: white;
   gap: 10px; 
+  
 }
 
 .App-link {
@@ -43,14 +45,17 @@
 .Search {
   text-align: left;
   border-radius: 4px;
+  margin-left: 20px;
+
   
 
 }
 
 .Search-input {
-  padding: 10px 170px;  /* Increased padding for a larger button */
+  padding: 10px 10px;  /* Increased padding for a larger button */
   background-color: white;
   margin-bottom: 10px;
+  width: 280px;
   border: none;
   border-radius: 5px;  /* Slightly increased radius for rounded corners */
   color: black;
@@ -64,9 +69,11 @@
 }
 
 .Search-button {
-  padding: 10px 240px;  /* Increased padding for a larger button */
+  padding: 10px 10px;  /* Increased padding for a larger button */
   margin-bottom: 10px;
   background-color: #61dafb;
+  width: 300px;
+  text-align: center;
   border: none;
   border-radius: 5px;  /* Slightly increased radius for rounded corners */
   color: white;
@@ -89,42 +96,19 @@
   margin-left: 10px;
   padding: 15px;
   border-radius: 4px;
+  
 }
 
 .Product-title {
   font-weight: bold;
   font-size: 1.2rem;
+  
 }
 
 .Product-description {
   margin-top: 10px;
 }
 
-/* Tracking Component */
-.Tracking {
-  text-align: left;
-  margin-left: 10px;
-  padding: 15px;
-  border-radius: 4px;
-}
-
-.Tracking-info {
-  font-weight: bold;
-}
-
-/* History Component */
-.History {
-  text-align: left;
-  margin-left: 10px;
-  padding: 15px;
-  border-radius: 4px;
-}
-
-.History-item {
-  text-align: left;
-
-  margin-top: 10px;
-}
 
 button {
   display: flex;  /* make the button use Flexbox */
@@ -149,8 +133,13 @@ button img {
 .product-category-buttons {
   
   display: flex; /* Aligns children (the buttons) in a row */
+  flex-direction: column;
   gap: 10px; /* Gives space between each button */
-  flex-wrap: wrap; /* Allows the buttons to wrap to the next line if they run out of space */
+  flex-wrap:wrap; /* Allows the buttons to wrap to the next line if they run out of space */
+  width: 300px;
+  margin-left: 20px;
+
+  
 }
 
 .product-category-buttons button {
@@ -158,8 +147,136 @@ button img {
   display: flex; /* Makes the button contents (icon and text) align in a row */
   align-items: center; /* Vertically aligns the icon and the text in the center */
   gap: 5px; /* Gives a little space between the icon and the text */
+  
 }
 
+.product-item {
+  flex-shrink: 0; /* Prevents the button from shrinking */
+  /* display: flex; Makes the button contents (icon and text) align in a row */
+  align-items: left; /* Vertically aligns the icon and the text in the center */
+  gap: 5px; /* Gives a little space between the icon and the text */
+  margin-left: 20px;
+  margin-top: 10px;
+  
+}
+/* 
+/* Navbar Styles */
+/* Styling for Navbar */
+
+.navbar {
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  justify-content: space-around;
+  align-items: center;
+  /* background-color: #f5f5f5; */
+  padding: 10px 10px;
+  /* box-shadow: 0 2px 5px rgba(0,0,0,0.1); */
+  
+}
+
+.navbar button {
+  background-color: #6DD5ED;
+  color: #fff;
+  border: none;
+  margin-top: 5px;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 0.9rem;  
+  font-family: 'Roboto', sans-serif;
+}
+
+.navbar button:hover {
+  background-color: red;
+}
+
+.navbar button:active {
+    transform: scale(0.95);
+    background-color: red;
+}
+
+.navbar button:focus {
+  transform: scale(1.05);
+  background-color: #2591cc;
+}
+
+
+
+/* Styling for ModalScreen */
+
+/* You can add a default styling if needed, for example, a container background or some padding. 
+Currently, the individual components inside ModalScreen (like Prices, Reviews etc.) might have their own styles, 
+so not adding any specific style for ModalScreen. 
+However, I'll put a placeholder here for you to know where to put styles if needed in the future. */
+
+.modal-screen {
+  padding: 20px;
+  background-color: red;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* A subtle shadow for depth */
+}
+
+
+
+
+/* ModalScreen Styles */
+.ModalScreen {
+  padding: 20px;
+  background-color: red; /* White background for content area */
+  border: 1px solid #e0e0e0; /* Light grey border */
+  border-radius: 4px; /* Slightly rounded corners */
+  margin-top: 20px; /* Space from the navbar */
+
+}
+
+.content-alternatives {
+  font-weight: bold;
+  font-size: 1.4rem;
+  height: 1000px;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;  
+  /* background-color: lightgray; */
+  margin-bottom: 20px; /* Space below the title */
+  display: flex;
+  justify-content: space-between;  /* Distributes the cards with equal space in between */
+  gap: 20px;  /* Gives a gap between each card; fallback for browsers that don't support grid-gap with flex */
+}
+
+.content-overview {
+  font-weight: bold;
+  font-size: 1.4rem;
+
+  display: flex;
+  height: 1000px;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;  
+  background-color: lightgray;
+  margin-bottom: 20px; /* Space below the title */
+}
+
+
+.content-body {
+
+  /* Additional styles for content body can go here */
+}
+
+.modal-entering,
+.modal-exiting,
+.modal-exited {
+  opacity: 0;
+  transition: opacity 800ms ease-in-out;
+}
+
+.modal-entered {
+  opacity: 1;
+  transition: opacity 800ms ease-in-out;
+
+}
 
 
 @keyframes App-logo-spin {
