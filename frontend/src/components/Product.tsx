@@ -10,10 +10,13 @@ type ProductCategory = "3D Printers" | "3D Scanners" | "Robots";
 
 interface ProductProps {
   onAddProduct: (product: string) => void;
+  activeCategory: ProductCategory;
+  setActiveCategory: React.Dispatch<React.SetStateAction<ProductCategory>>;
+
+
 }
 
-function Product({ onAddProduct }: ProductProps) {
-  const [activeCategory, setActiveCategory] = useState<ProductCategory>("3D Printers");
+function Product({ onAddProduct, activeCategory, setActiveCategory }: ProductProps) {
   const [products, setProducts] = useState<Record<ProductCategory, string[]>>({
     "3D Printers": [],
     "3D Scanners": [],
@@ -22,6 +25,57 @@ function Product({ onAddProduct }: ProductProps) {
 
   const [trackedProducts, setTrackedProducts] = useState<string[]>([]);
 
+  type SubFilter = "Application" | "Size" | "Materials" | "Accuracy" | "Surface" | "Budget" | "Object" ; // ... Add other subfilter types here
+
+  const FILTER_OPTIONS: Record<ProductCategory, Record<SubFilter, { name: string, tooltip?: string }[]>> = {
+    "3D Printers": {
+      "Application": [
+        {name: "Novice", tooltip: "For beginners!"}, 
+        {name: "Hobbyist"}, 
+        {name: "Professional"}, 
+        {name: "Industrial"}
+      ],
+      "Size": ["300 mm <", "< 400 mm <", "< 800 mm"].map(o => ({name: o})),
+      "Materials": [
+        {name: "PLA"}, 
+        {name: "PETG"}, 
+        {
+          name: "ABS", 
+          // tooltip: {
+          //   name: "Acrylonitrile Butadiene Styrene",
+          //   style: {
+          //     fontSize: "16px", // Customize the font size
+          //     transition: "opacity 0.3s ease-in-out", // Add a custom transition
+          //   },
+          // },
+       },
+    ],
+      "Accuracy": ["PLA", "PETG", "ABS"].map(o => ({name: o})),
+      "Surface": ["PLA", "PETG", "ABS"].map(o => ({name: o})),
+      "Budget": ["PLA", "PETG", "ABS"].map(o => ({name: o})),
+      "Object": [] // added an empty array as a placeholder
+    },
+    "3D Scanners": {
+      "Application": ["Option 1", "Option 2", "Option 3"].map(o => ({name: o})),
+      "Size": ["Tiny", "Average", "Huge"].map(o => ({name: o})),
+      "Materials": [], 
+      "Accuracy": [], 
+      "Surface": [], 
+      "Budget": [],
+      "Object": []
+    },
+    "Robots": {
+      "Application": ["Option A", "Option B", "Option C"].map(o => ({name: o})),
+      "Size": ["Mini", "Regular", "Giant"].map(o => ({name: o})),
+      "Materials": [], 
+      "Accuracy": [], 
+      "Surface": [], 
+      "Budget": [],
+      "Object": []
+    },
+};
+
+  
   const formatProduct = (product: string) => {
     return product
       .toLowerCase()
@@ -62,7 +116,7 @@ function Product({ onAddProduct }: ProductProps) {
 
   return (
     <div>
-      <h1>Product Search</h1>
+      {/* <h1>Product Search</h1> */}
       <Search onProductSearch={handleProductAddition} />
 
       <div className="product-category-buttons">
@@ -77,16 +131,39 @@ function Product({ onAddProduct }: ProductProps) {
         ))}
       </div>
 
+      <div className="product-filters">
+        <h2>Filters for {activeCategory}</h2>
+        {Object.entries(FILTER_OPTIONS[activeCategory]).map(([subFilter, options]) => (
+          <div key={subFilter} className="subfilter-section">
+            <h3>{subFilter}</h3>
+            <div className="subfilter-options">
+              {options.map(filter => (
+                <button 
+                  key={filter.name} 
+                  className="filter-button"
+                  title={filter.tooltip}
+                >
+                  {filter.name}
+                </button>
+              ))}
+            </div>
+          </div>
+        ))}
+
+
+      </div>
+
+
       <div>
         {products[activeCategory].map(product => (
           <div key={product} className="product-item">
             <button className="product-button">
-            <input 
+              <input 
                 type="checkbox" 
                 onChange={() => handleProductTrack(product)}
                 checked={trackedProducts.includes(product)}
-            />
-            {product} <span style={{ color: 'green', fontWeight: 'bold' }}>$500</span>
+              />
+              {product} <span style={{ color: 'green', fontWeight: 'bold' }}>$500</span>
             </button>
           </div>
         ))}

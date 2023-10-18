@@ -58,6 +58,8 @@
   width: 280px;
   border: none;
   border-radius: 5px;  /* Slightly increased radius for rounded corners */
+  border: 1px solid lightgray;
+
   color: black;
   text-align: left;
   cursor: pointer;
@@ -277,6 +279,97 @@ However, I'll put a placeholder here for you to know where to put styles if need
   transition: opacity 800ms ease-in-out;
 
 }
+
+.product-filters {
+  width: 100%; /* This ensures it takes the full width available */
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  margin-left: 20px;
+}
+
+/* Align the option buttons in a row */
+.product-filters div {
+  /* display: flex; */
+  /* flex-direction: row; */
+  align-items: left;
+  /* margin-left: 20px; */
+  gap: 10px;  /* Provides a gap between each button */
+}
+
+/* Style for the section containing the subfilter and its options */
+.subfilter-section {
+  display: flex;
+  flex-direction: column; /* Keep it column so h3 remains above the buttons */
+  align-items: start; /* Align content to the start, making it left aligned */
+  gap: 10px;  /* Gap between the h3 and the option buttons */
+  width: 100%; /* Ensure it takes the full width */
+}
+
+/* Adjust styles to display option buttons in a row */
+.subfilter-options {
+  display: flex;
+  flex-direction: row;  /* This will make the buttons lay out in a row */
+  gap: 10px;  /* Gap between each button */
+  flex-wrap: wrap; /* If there are many buttons, they will wrap to the next line */
+}
+
+/* Keep your styles for the individual option button */
+
+.filter-tooltip {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.filter-button {
+  font-size: 12px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #f5f5f5;
+  transition: background-color 0.3s;
+}
+
+/* Hover effect for filter buttons */
+.filter-button:hover .filter-tooltip {
+  opacity: 1;
+}
+
+.filter-button::after {
+  content: attr(title);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.8); /* Background color for the tooltip */
+  color: white; /* Text color for the tooltip */
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 14px; /* Adjust the size as needed */
+  white-space: nowrap;
+  transition: opacity 0.3s ease-in-out; /* Add a transition effect */
+  pointer-events: none; /* Allow clicks to pass through the tooltip */
+
+}
+
+.filter-button:hover::after {
+  opacity: 1; /* Show the tooltip on hover */
+}
+
+/* Hover effect for the option button */
+.filter-button:hover {
+  background-color: #e0e0e0;  /* Slightly darker background color on hover */
+}
+
 
 
 @keyframes App-logo-spin {

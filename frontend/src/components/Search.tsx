@@ -21,6 +21,8 @@ function Search({ onProductSearch }: SearchProps) {
   return (
     
     <form className="Search" onSubmit={handleSubmit}>
+            <h1>Product Search</h1>
+
       <input className="Search-input" type="text" value={inputValue} onChange={handleInputChange} placeholder="Search product..." />
       <button className="Search-button" type="submit">Add</button>
     </form>

@@ -8,10 +8,11 @@ import React, { useState } from 'react';
 import Product from './components/Product';
 import Navbar from './components/Navbar';
 import ModalScreen from './components/ModalScreen';
+import Filters from './components/Filters';
 
 function App() {
-  const [trackedProducts, setTrackedProducts] = useState<string[]>([]);
   const [selectedContent, setSelectedContent] = useState<string | null>(null);
+  const [activeCategory, setActiveCategory] = useState<"3D Printers" | "3D Scanners" | "Robots">("3D Printers");
 
   return (
     <div className="App">
@@ -23,7 +24,13 @@ function App() {
       </header>
       <div style={{ display: 'flex' }}>
         <div style={{ width: '30%' }}>
-          <Product onAddProduct={(product: string) => console.log("Product added:", product)} />
+       <Product 
+          onAddProduct={(product: string) => console.log("Product added:", product)} 
+          activeCategory={activeCategory} 
+          setActiveCategory={setActiveCategory}
+        />
+        {/* <Filters activeCategory={activeCategory} /> */}
+
         </div>
         <div style={{ width: '70%' }}>
           <Navbar onSelectContent={setSelectedContent} />
